@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "convert-array-to-csv": "^2.0.0",
+    "csv-array": "^0.0.22",
+    "zipcodes": "^8.0.0"
+  }
+}
