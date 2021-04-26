@@ -3,7 +3,9 @@ const csv = require("csv-array");
 const zipcodes = require("zipcodes");
 const { convertArrayToCSV } = require("convert-array-to-csv");
 
-csv.parseCSV("data.csv", async function (list) {
+const dataArray = require("./data.json");
+
+const outputCsv = async (list) => {
   const results = list.map((each) => {
     const data = zipcodes.lookup(each.zip_code);
     return {
@@ -17,4 +19,12 @@ csv.parseCSV("data.csv", async function (list) {
   fs.writeFile("./output.csv", csv, (err) => {
     console.log(err || "Done");
   });
-});
+};
+
+if (dataArray.length > 0) {
+  outputCsv(dataArray);
+} else {
+  csv.parseCSV("data.csv", async function (list) {
+    outputCsv(list);
+  });
+}
